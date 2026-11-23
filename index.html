@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Royal Fashion BD — শার্ট, ঘড়ি ও জুতার অনলাইন শপ">
+<title>Royal Fashion BD | Online Store</title>
+<style>
+:root{--ink:#171717;--gold:#c49a42;--cream:#faf8f3;--muted:#777}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;color:var(--ink);background:#fff}
+header{background:#111;color:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:800;letter-spacing:1px}.brand span{color:var(--gold)}
+nav a{color:#fff;text-decoration:none;margin-left:16px;font-size:14px}
+.hero{background:linear-gradient(110deg,#171717,#383027);color:white;padding:60px 6%;text-align:center}
+.hero small{color:#e7c77f;letter-spacing:3px}.hero h1{font-size:clamp(30px,6vw,54px);margin:14px 0}.hero p{color:#ddd}
+.btn{background:var(--gold);border:0;padding:12px 20px;border-radius:4px;color:#111;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.wrap{max-width:1100px;margin:auto;padding:35px 5%}.section-head{text-align:center;margin-bottom:24px}.section-head p{color:var(--muted)}
+.filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.filters button{padding:9px 15px;border:1px solid #ddd;background:white;border-radius:20px;cursor:pointer}
+.filters button.active{background:#111;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.product{border:1px solid #eee;border-radius:9px;overflow:hidden;background:white}
+.product img{width:100%;height:220px;object-fit:cover;background:#eee}
+.info{padding:14px}.info h3{margin:0 0 8px}.price{font-weight:bold;color:#9a7025;margin-bottom:12px}
+.info button{width:100%}
+.notice{background:var(--cream);padding:20px;border-radius:8px;text-align:center;line-height:1.8}
+footer{background:#111;color:#ddd;padding:30px 5%;text-align:center;line-height:1.8}
+.cartbar{position:fixed;right:16px;bottom:16px;background:#111;color:white;padding:12px 16px;border-radius:30px;box-shadow:0 3px 18px #0003;cursor:pointer}
+input,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:5px;margin:6px 0 12px;font:inherit}
+#checkout{display:none;position:fixed;inset:0;background:#0009;z-index:5;padding:18px;overflow:auto}
+.modal{max-width:480px;background:white;margin:5vh auto;padding:22px;border-radius:10px}
+.close{float:right;border:0;background:none;font-size:22px;cursor:pointer}
+@media(max-width:600px){nav a{margin:0 8px 0 0}.hero{padding:45px 5%}}
+</style>
+</head>
+<body>
+<header><div class="brand">ROYAL <span>FASHION BD</span></div><nav><a href="#home">হোম</a><a href="#shop">শপ</a><a href="#delivery">ডেলিভারি</a></nav></header>
+<section class="hero" id="home"><small>STYLE • QUALITY • TRUST</small><h1>আপনার স্টাইল, আপনার পরিচয়</h1><p>পছন্দের শার্ট, ঘড়ি ও জুতা কিনুন সহজেই।</p><a class="btn" href="#shop">এখনই শপিং করুন</a></section>
+<main class="wrap" id="shop">
+<div class="section-head"><h2>আমাদের পণ্য</h2><p>আপনার পছন্দের পণ্যটি বেছে নিন</p></div>
+<div class="filters">
+<button class="active" data-cat="সব">সব পণ্য</button><button data-cat="শার্ট">শার্ট</button><button data-cat="ঘড়ি">ঘড়ি</button><button data-cat="জুতা">জুতা</button>
+</div>
+<div class="grid" id="products"></div>
+</main>
+<section class="wrap" id="delivery"><div class="notice"><h2>ডেলিভারি চার্জ</h2>ঢাকার ভিতরে: ৭০ টাকা<br>ঢাকার বাইরে: ১৩০ টাকা<br><small>অর্ডার কনফার্ম করার আগে পণ্যের দাম ও ডেলিভারি চার্জ যাচাই করুন।</small></div></section>
+<footer><strong>ROYAL FASHION BD</strong><br>শার্ট • ঘড়ি • জুতা<br>অর্ডার করতে পণ্য কার্টে যোগ করুন এবং WhatsApp নম্বর সেট করুন।</footer>
+<button class="cartbar" onclick="openCheckout()">🛒 কার্ট (<span id="count">0</span>)</button>
+<div id="checkout"><div class="modal"><button class="close" onclick="closeCheckout()">×</button><h2>আপনার অর্ডার</h2><div id="cartitems"></div><p id="total"></p><label>আপনার নাম</label><input id="customer" placeholder="নাম লিখুন"><label>মোবাইল নম্বর</label><input id="phone" placeholder="01XXXXXXXXX"><label>সম্পূর্ণ ঠিকানা</label><textarea id="address" rows="3" placeholder="বাসা, এলাকা, জেলা"></textarea><label>WhatsApp নম্বর (দেশের কোডসহ, যেমন 8801XXXXXXXXX)</label><input id="wa" placeholder="এখানে আপনার WhatsApp নম্বর দিন"><button class="btn" style="width:100%" onclick="sendOrder()">WhatsApp-এ অর্ডার পাঠান</button><small>WhatsApp নম্বরটি আপনার নিজের ব্যবসার নম্বর দিয়ে বসাবেন।</small></div></div>
+<script>
+const products=[
+ {name:"প্রিমিয়াম ক্যাজুয়াল শার্ট",cat:"শার্ট",price:0,img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700"},
+ {name:"ক্লাসিক ফ্যাশন ঘড়ি",cat:"ঘড়ি",price:0,img:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=700"},
+ {name:"স্টাইলিশ ক্যাজুয়াল জুতা",cat:"জুতা",price:0,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"}
+];
+let cart=[];
+function render(cat="সব"){document.getElementById("products").innerHTML=products.filter(p=>cat==="সব"||p.cat===cat).map((p,i)=>`<article class="product"><img src="${p.img}" alt="${p.name}" onerror="this.style.display='none'"><div class="info"><h3>${p.name}</h3><div class="price">${p.price?`৳${p.price}`:"দাম যোগ করুন"}</div><button class="btn" onclick="add('${p.name}')">কার্টে যোগ করুন</button></div></article>`).join("")}
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.cat)});
+function add(name){cart.push(name);document.getElementById("count").textContent=cart.length}
+function openCheckout(){document.getElementById("checkout").style.display="block";document.getElementById("cartitems").innerHTML=cart.length?cart.map((x,i)=>`${i+1}. ${x}`).join("<br>"):"কার্ট খালি";document.getElementById("total").textContent="মোট পণ্যের সংখ্যা: "+cart.length}
+function closeCheckout(){document.getElementById("checkout").style.display="none"}
+function sendOrder(){let n=document.getElementById("customer").value.trim(),p=document.getElementById("phone").value.trim(),a=document.getElementById("address").value.trim(),w=document.getElementById("wa").value.replace(/\D/g,"");if(!cart.length||!n||!p||!a||!w){alert("কার্টে পণ্য যোগ করুন এবং সব তথ্য পূরণ করুন।");return}let msg=`Royal Fashion BD অর্ডার%0Aনাম: ${encodeURIComponent(n)}%0Aফোন: ${encodeURIComponent(p)}%0Aঠিকানা: ${encodeURIComponent(a)}%0Aপণ্য: ${encodeURIComponent(cart.join(", "))}`;window.open(`https://wa.me/${w}?text=${msg}`,"_blank")}
+render();
+</script>
+</body></html>
