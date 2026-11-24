@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Royal Fashion BD — শার্ট, ঘড়ি ও জুতার অনলাইন শপ">
+<meta name="theme-color" content="#ffffff">
+<title>Royal Fashion BD | Online Store</title>
+<style>
+:root{--pink:#e91e63;--orange:#f36b21;--ink:#202124;--muted:#777;--line:#eee;--soft:#fff7f1;--green:#287a60}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f5f5f5;color:var(--ink);font-family:Arial,"Noto Sans Bengali",sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 2px 8px #0000000b}
+.header-inner{max-width:1180px;margin:auto;padding:13px 18px;display:flex;align-items:center;gap:13px}
+.brand{font-weight:900;font-size:20px;letter-spacing:.2px;white-space:nowrap;color:#202124}
+.brand span{color:var(--pink)}
+.search{display:flex;align-items:center;flex:1;border:2px solid var(--pink);border-radius:14px;overflow:hidden;min-width:90px;height:46px}
+.search input{border:0;outline:0;padding:0 13px;width:100%;min-width:0;font-size:15px}
+.search button{height:100%;border:0;background:var(--pink);color:white;padding:0 17px;font-weight:700;white-space:nowrap}
+.header-icon{border:1px solid #eee;background:#fff;border-radius:10px;width:43px;height:43px;font-size:20px}
+.desktop-nav{display:flex;justify-content:center;gap:25px;padding:0 15px 12px;font-size:14px;color:#555}
+.desktop-nav a:hover{color:var(--pink)}
+.page{max-width:1180px;margin:auto;background:#fff;min-height:100vh;padding-bottom:85px}
+.category-strip{display:flex;gap:10px;overflow-x:auto;padding:14px 18px;border-bottom:1px solid var(--line);scrollbar-width:none}
+.category-strip::-webkit-scrollbar{display:none}
+.cat-pill{border:0;background:#fff5f7;color:#555;border-radius:30px;padding:10px 17px;white-space:nowrap;font-weight:700}
+.cat-pill.active{background:#ffe1eb;color:var(--pink);box-shadow:inset 0 0 0 1px #f5b3ca}
+.hero{margin:15px 18px 20px;border-radius:15px;overflow:hidden;background:linear-gradient(115deg,#241b25,#583044 58%,#a44b67);color:#fff;padding:28px 25px;display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:170px}
+.hero small{color:#ffd7e4;letter-spacing:2px;font-weight:700}
+.hero h1{font-size:clamp(25px,4vw,39px);margin:9px 0}
+.hero p{margin:0 0 17px;color:#f4dfe6}
+.hero .cta{display:inline-block;background:#fff;color:#a32251;padding:10px 17px;border-radius:7px;font-weight:800}
+.hero-mark{font-size:clamp(48px,9vw,90px);filter:drop-shadow(0 8px 12px #0004)}
+.section{padding:13px 18px 20px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.section-head h2{font-size:23px;margin:0;font-weight:900}
+.section-head h2 .accent{color:var(--orange)}
+.more{color:#7a3b91;font-weight:700;font-size:14px;white-space:nowrap}
+.flash-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.flash-card{border:1px solid #f1f1f1;border-radius:11px;overflow:hidden;background:#fff}
+.flash-card img{width:100%;height:135px;object-fit:cover;background:#f2f2f2;display:block}
+.flash-meta{padding:9px 10px;display:flex;align-items:center;justify-content:space-between;gap:5px}
+.flash-meta strong{color:#e44d68;font-size:17px}
+.discount{background:#ffe4e8;color:#dc3f5b;border-radius:6px;padding:5px 7px;font-weight:800;font-size:12px}
+.ranking{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px;overflow-x:auto;padding-bottom:5px}
+.rank-card{background:#fff4ed;border-radius:8px;overflow:hidden;text-align:center;min-width:0}
+.rank-card b{display:block;padding:9px 5px;font-size:13px;min-height:42px}
+.rank-card img{width:100%;height:110px;object-fit:cover;display:block}
+.promo-strip{display:flex;gap:10px;overflow-x:auto;padding:2px 18px 17px;scrollbar-width:none}
+.promo-chip{white-space:nowrap;border:0;background:#f5f5f8;border-radius:25px;padding:10px 15px;font-weight:700;color:#555}
+.promo-chip:first-child{background:#fff0e7;color:#e65b19}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.product{border:1px solid #eee;border-radius:11px;overflow:hidden;background:#fff;min-width:0}
+.product-photo{position:relative;background:#f6f6f6}
+.product-photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.tag{position:absolute;left:0;bottom:0;background:var(--green);color:#fff;font-size:11px;padding:6px 9px;font-weight:700}
+.product-info{padding:11px}
+.product-info h3{font-size:15px;line-height:1.45;margin:0 0 7px;min-height:42px}
+.price-row{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin-bottom:7px}
+.price{font-weight:900;color:#e85b19;font-size:19px}
+.old-price{color:#999;text-decoration:line-through;font-size:12px}
+.product-note{font-size:12px;color:#999;margin:5px 0 10px}
+.add-btn{border:0;background:#222;color:white;border-radius:7px;padding:10px;width:100%;font-weight:700}
+.add-btn:hover{background:var(--pink)}
+.empty{grid-column:1/-1;text-align:center;padding:30px;color:#777}
+.delivery{margin:5px 18px 20px;background:#fff8ed;border:1px solid #ffe5bf;padding:17px;border-radius:12px;line-height:1.8;text-align:center}
+.delivery h2{margin:0 0 6px;font-size:19px}
+footer{background:#202124;color:#ddd;text-align:center;padding:25px 18px;line-height:1.8;font-size:14px}
+footer strong{color:#fff;font-size:18px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#fff;border-top:1px solid #e9e9e9;display:flex;justify-content:center;box-shadow:0 -3px 12px #00000008}
+.bottom-inner{width:100%;max-width:700px;display:grid;grid-template-columns:repeat(4,1fr)}
+.nav-item{border:0;background:#fff;color:#777;padding:8px 3px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px}
+.nav-item .ico{font-size:23px;line-height:1.2}
+.nav-item.active{color:var(--orange);font-weight:800}
+.cart-count{display:inline-flex;align-items:center;justify-content:center;background:var(--pink);color:#fff;border-radius:20px;min-width:17px;height:17px;font-size:10px;padding:0 4px;margin-left:3px}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:40;padding:15px;overflow:auto}
+.modal{max-width:480px;margin:5vh auto;background:#fff;border-radius:14px;padding:20px;box-shadow:0 15px 50px #0003}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-head h2{margin:0;font-size:21px}
+.close{border:0;background:#f3f3f3;border-radius:50%;width:34px;height:34px;font-size:22px}
+.cart-line{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #eee;font-size:14px}
+.field{display:block;font-size:13px;font-weight:700;margin-top:12px}
+.field input,.field textarea{display:block;width:100%;border:1px solid #ddd;border-radius:7px;padding:11px;margin-top:6px;outline-color:var(--pink)}
+.total{font-weight:800;background:#fff5f7;padding:12px;border-radius:8px;margin:13px 0}
+.send-btn{width:100%;border:0;background:#159b58;color:#fff;border-radius:8px;padding:13px;font-weight:800;margin-top:14px}
+.small-note{font-size:12px;color:#777;line-height:1.6}
+@media(min-width:760px){
+ .page{box-shadow:0 0 25px #00000008}
+ .hero{min-height:220px;padding:38px 42px}
+ .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .flash-card img{height:175px}
+ .product-info h3{font-size:16px}
+ .bottom-nav{display:none}
+ .page{padding-bottom:30px}
+}
+@media(max-width:560px){
+ .header-inner{padding:10px 12px;gap:8px}
+ .brand{font-size:16px}
+ .header-icon{display:none}
+ .search{height:42px}
+ .search button{padding:0 11px;font-size:13px}
+ .desktop-nav{display:none}
+ .hero{margin:12px 12px 15px;padding:22px 17px;min-height:150px}
+ .section{padding:12px}
+ .section-head h2{font-size:20px}
+ .flash-grid{gap:8px}
+ .flash-card img{height:105px}
+ .flash-meta{padding:7px 6px}
+ .flash-meta strong{font-size:14px}
+ .discount{font-size:10px;padding:4px}
+ .products{gap:10px}
+ .product-info{padding:9px}
+ .product-info h3{font-size:13px;min-height:38px}
+ .price{font-size:17px}
+ .add-btn{font-size:12px;padding:9px 5px}
+ .delivery{margin:4px 12px 17px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="header-inner">
+  <a class="brand" href="#home">ROYAL <span>FASHION BD</span></a>
+  <form class="search" id="searchForm">
+   <input id="searchInput" type="search" placeholder="পণ্য খুঁজুন..." aria-label="পণ্য খুঁজুন">
+   <button type="submit">খুঁজুন</button>
+  </form>
+  <button class="header-icon" aria-label="কার্ট" onclick="openCheckout()">🛒</button>
+ </div>
+ <nav class="desktop-nav"><a href="#home">হোম</a><a href="#categories">ক্যাটাগরি</a><a href="#productsSection">সব পণ্য</a><a href="#delivery">ডেলিভারি</a></nav>
+</header>
+
+<div class="page">
+ <section class="category-strip" id="categories">
+  <button class="cat-pill active" data-cat="সব">✨ আপনার জন্য</button>
+  <button class="cat-pill" data-cat="শার্ট">👕 শার্ট</button>
+  <button class="cat-pill" data-cat="ঘড়ি">⌚ ঘড়ি</button>
+  <button class="cat-pill" data-cat="জুতা">👟 জুতা</button>
+  <button class="cat-pill" data-cat="সব">🔥 জনপ্রিয়</button>
+ </section>
+
+ <section class="hero" id="home">
+  <div><small>STYLE • QUALITY • TRUST</small><h1>আপনার স্টাইল,<br>আপনার পরিচয়</h1><p>পছন্দের ফ্যাশন পণ্য কিনুন সহজেই</p><a class="cta" href="#productsSection">এখনই শপিং করুন →</a></div>
+  <div class="hero-mark" aria-hidden="true">👔</div>
+ </section>
+
+ <section class="section">
+  <div class="section-head"><h2><span class="accent">Flash</span> Sale</h2><a class="more" href="#productsSection">সব পণ্য দেখুন ›</a></div>
+  <div class="flash-grid" id="flashGrid"></div>
+ </section>
+
+ <section class="section">
+  <div class="section-head"><h2>Top <span class="accent">Ranking</span></h2><a class="more" href="#productsSection">জনপ্রিয় পণ্য ›</a></div>
+  <div class="ranking">
+   <div class="rank-card"><b>শার্ট কালেকশন</b><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" alt="শার্ট"></div>
+   <div class="rank-card"><b>ঘড়ি কালেকশন</b><img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="ঘড়ি"></div>
+   <div class="rank-card"><b>জুতা কালেকশন</b><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="জুতা"></div>
+   <div class="rank-card"><b>নতুন কালেকশন</b><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400" alt="ফ্যাশন"></div>
+  </div>
+ </section>
+
+ <div class="promo-strip">
+  <span class="promo-chip">🧡 আপনার জন্য</span><span class="promo-chip">✦ নতুন কালেকশন</span><span class="promo-chip">🎟️ বিশেষ অফার</span><span class="promo-chip">🚚 ডেলিভারি সুবিধা</span>
+ </div>
+
+ <section class="section" id="productsSection">
+  <div class="section-head"><h2>আমাদের <span class="accent">পণ্য</span></h2><span class="more" id="resultCount">সব পণ্য</span></div>
+  <div class="products" id="products"></div>
+ </section>
+
+ <section class="delivery" id="delivery">
+  <h2>🚚 ডেলিভারি চার্জ</h2>
+  ঢাকার ভিতরে: ৭০ টাকা &nbsp; | &nbsp; ঢাকার বাইরে: ১৩০ টাকা
+  <div class="small-note">অর্ডার নিশ্চিত করার আগে পণ্যের দাম ও ডেলিভারি চার্জ যাচাই করুন।</div>
+ </section>
+ <footer><strong>ROYAL FASHION BD</strong><br>শার্ট • ঘড়ি • জুতা<br>স্টাইল, কোয়ালিটি ও বিশ্বাসের ঠিকানা</footer>
+</div>
+
+<nav class="bottom-nav">
+ <div class="bottom-inner">
+  <button class="nav-item active" onclick="goHome()"><span class="ico">⌂</span>হোম</button>
+  <button class="nav-item" onclick="contactShop()"><span class="ico">☏</span>মেসেজ</button>
+  <button class="nav-item" onclick="openCheckout()"><span class="ico">🛒</span>কার্ট <span class="cart-count" id="count">0</span></button>
+  <button class="nav-item" onclick="showAccount()"><span class="ico">♙</span>অ্যাকাউন্ট</button>
+ </div>
+</nav>
+
+<div class="overlay" id="checkout">
+ <div class="modal">
+  <div class="modal-head"><h2>আপনার অর্ডার</h2><button class="close" onclick="closeCheckout()">×</button></div>
+  <div id="cartitems"></div><div class="total" id="total">কার্ট খালি</div>
+  <label class="field">আপনার নাম<input id="customer" placeholder="নাম লিখুন"></label>
+  <label class="field">মোবাইল নম্বর<input id="phone" placeholder="01XXXXXXXXX" inputmode="tel"></label>
+  <label class="field">সম্পূর্ণ ঠিকানা<textarea id="address" rows="2" placeholder="বাসা, এলাকা, জেলা"></textarea></label>
+  <label class="field">আপনার WhatsApp নম্বর (দেশের কোডসহ)<input id="wa" placeholder="8801XXXXXXXXX" inputmode="numeric"></label>
+  <button class="send-btn" onclick="sendOrder()">WhatsApp-এ অর্ডার পাঠান</button>
+  <p class="small-note">WhatsApp নম্বরের ঘরে আপনার ব্যবসার WhatsApp নম্বর দিন। পণ্যের দাম যোগ না করা পর্যন্ত অর্ডারে দাম দেখানো হবে না।</p>
+ </div>
+</div>
+
+<script>
+const products = [
+ {id:1,name:"প্রিমিয়াম ক্যাজুয়াল শার্ট",cat:"শার্ট",price:0,img:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700"},
+ {id:2,name:"ক্লাসিক ফ্যাশন ঘড়ি",cat:"ঘড়ি",price:0,img:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=700"},
+ {id:3,name:"স্টাইলিশ ক্যাজুয়াল জুতা",cat:"জুতা",price:0,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"}
+];
+let cart = [];
+let activeCategory = "সব";
+let searchTerm = "";
+const money = n => "৳" + Number(n).toLocaleString("bn-BD");
+
+function productCard(p){
+ return `<article class="product"><div class="product-photo"><img src="${p.img}" alt="${p.name}" onerror="this.style.opacity='.25'"><span class="tag">ROYAL FASHION BD</span></div><div class="product-info"><h3>${p.name}</h3><div class="price-row"><span class="price">${p.price ? money(p.price) : "দাম জানতে যোগাযোগ করুন"}</span></div><div class="product-note">${p.cat} • অর্ডার করতে কার্টে যোগ করুন</div><button class="add-btn" onclick="addToCart(${p.id})">🛒 কার্টে যোগ করুন</button></div></article>`;
+}
+function render(){
+ const filtered = products.filter(p => (activeCategory==="সব" || p.cat===activeCategory) && p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+ document.getElementById("products").innerHTML = filtered.length ? filtered.map(productCard).join("") : '<div class="empty">কোনো পণ্য পাওয়া যায়নি। অন্য নামে খুঁজে দেখুন।</div>';
+ document.getElementById("resultCount").textContent = filtered.length + "টি পণ্য";
+ document.getElementById("flashGrid").innerHTML = products.slice(0,3).map(p=>`<div class="flash-card"><img src="${p.img}" alt="${p.name}"><div class="flash-meta"><strong>${p.price?money(p.price):"দাম জানতে"}</strong><span class="discount">${p.cat}</span></div></div>`).join("");
+}
+function addToCart(id){cart.push(id);document.getElementById("count").textContent=cart.length;const b=document.getElementById("count");b.style.transform="scale(1.2)";setTimeout(()=>b.style.transform="",160);}
+function openCheckout(){
+ document.getElementById("checkout").style.display="block";
+ const grouped={};cart.forEach(id=>{const p=products.find(x=>x.id===id);if(p)grouped[id]=(grouped[id]||0)+1;});
+ const lines=Object.keys(grouped).map(id=>{const p=products.find(x=>x.id===Number(id));return `<div class="cart-line"><span>${p.name} × ${grouped[id]}</span><strong>${p.price?money(p.price*grouped[id]):"দাম জানতে হবে"}</strong></div>`;});
+ document.getElementById("cartitems").innerHTML=lines.length?lines.join(""):"<p>আপনার কার্ট খালি। আগে পণ্য যোগ করুন।</p>";
+ const total=cart.reduce((sum,id)=>sum+(products.find(p=>p.id===id)?.price||0),0);
+ document.getElementById("total").textContent=cart.length?`মোট পণ্য: ${cart.length}টি • ${total? "পণ্যের মোট দাম: "+money(total):"পণ্যের দাম নিশ্চিত করতে যোগাযোগ করুন"}`:"কার্ট খালি";
+}
+function closeCheckout(){document.getElementById("checkout").style.display="none";}
+function sendOrder(){
+ const n=document.getElementById("customer").value.trim(),p=document.getElementById("phone").value.trim(),a=document.getElementById("address").value.trim(),w=document.getElementById("wa").value.replace(/\D/g,"");
+ if(!cart.length||!n||!p||!a||!w){alert("কার্টে পণ্য যোগ করুন এবং সব তথ্য পূরণ করুন।");return;}
+ const grouped={};cart.forEach(id=>{const item=products.find(x=>x.id===id);if(item)grouped[item.name]=(grouped[item.name]||0)+1;});
+ const items=Object.entries(grouped).map(([name,qty])=>`${name} × ${qty}`).join(", ");
+ const total=cart.reduce((sum,id)=>sum+(products.find(x=>x.id===id)?.price||0),0);
+ const msg=`Royal Fashion BD অর্ডার\nনাম: ${n}\nফোন: ${p}\nঠিকানা: ${a}\nপণ্য: ${items}\nপণ্যের মোট দাম: ${total?money(total):"দাম নিশ্চিত করতে হবে"}\nডেলিভারি চার্জ: ঢাকা ৭০ টাকা / ঢাকার বাইরে ১৩০ টাকা (ঠিকানা অনুযায়ী)`;
+ window.open(`https://wa.me/${w}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+document.querySelectorAll(".cat-pill").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll(".cat-pill").forEach(x=>x.classList.remove("active"));
+ btn.classList.add("active");activeCategory=btn.dataset.cat;render();
+}));
+document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();searchTerm=document.getElementById("searchInput").value.trim();activeCategory="সব";document.querySelectorAll(".cat-pill").forEach(x=>x.classList.toggle("active",x.dataset.cat==="সব"));render();document.getElementById("productsSection").scrollIntoView({behavior:"smooth"});});
+document.getElementById("checkout").addEventListener("click",e=>{if(e.target.id==="checkout")closeCheckout();});
+function goHome(){window.scrollTo({top:0,behavior:"smooth"});}
+function contactShop(){alert("যোগাযোগের জন্য অর্ডার ফর্মে আপনার তথ্য দিয়ে WhatsApp-এ অর্ডার পাঠান।");}
+function showAccount(){alert("কাস্টমার অ্যাকাউন্ট সুবিধা পরবর্তী ধাপে যোগ করা হবে।");}
+render();
+</script>
+</body>
+</html>
